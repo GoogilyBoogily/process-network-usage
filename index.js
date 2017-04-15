@@ -6,8 +6,7 @@ spawn = require("child_process").spawn;
 
 nethogsProcess = spawn("nethogs", ["-t"]);
 
-nethogsProcess.stdout.setEncoding('utf8');
-
+nethogsProcess.stdout.setEncoding("utf8");
 
 console.log("name/PID/UID       sent    recieve");
 console.log("----------------------------------");
@@ -33,7 +32,7 @@ nethogsProcess.stdout.on("data", (data) => {
         }
     }
 });
-nethogsProcess.stderr.on('data', (data) => {
+nethogsProcess.stderr.on("data", (data) => {
     if (!data.toString().startsWith("Waiting for first packet to arrive")) {
         console.log(`stderr: ${data}`);
     }
@@ -55,9 +54,9 @@ function shouldIgnore(line) {
         return true;
     } else if (line.startsWith("Ethernet link detected")) {
         return true;
-    } else {
-        return false;
     }
+
+    return false;
 }
 
 
