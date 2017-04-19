@@ -3,14 +3,12 @@
 var nethogsProcess, spawn;
 
 spawn = require("child_process").spawn;
-
 nethogsProcess = spawn("nethogs", ["-t"]);
-
-nethogsProcess.stdout.setEncoding("utf8");
 
 console.log("name/PID/UID       sent    recieve");
 console.log("----------------------------------");
 
+nethogsProcess.stdout.setEncoding("utf8");
 nethogsProcess.stdout.on("data", (data) => {
     var dataCleaned, lines;
 
